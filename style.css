@@ -1,0 +1,25 @@
+body {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+}
+
+.field {
+  margin-bottom: 10px;
+}
+
+label {
+  display: inline-block;
+  margin-right: 10px;  /* keeps spacing before the value */
+}
+
+input {
+  width: 80px;
+}
+
+#configList li {
+  cursor: pointer;
+  color: blue;
+  text-decoration: underline;
+  margin: 5px 0;
+}
+

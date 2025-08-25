@@ -1,0 +1,9 @@
+{
+  "inputs": ["X", "Y"],
+  "intermediates": {
+    "A": "X + Y",
+    "B": "A / 2"
+  },
+  "outputs": ["B"]
+}
+
