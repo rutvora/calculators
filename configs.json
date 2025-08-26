@@ -1,5 +1,5 @@
 {
-  "Rent-a-car Comparison": "car_rental.json",
-  "EMI vs Investment Comparison": "emi_v_investment.json"
+  "Rent-a-car": "car_rental.json",
+  "EMI vs Investment": "emi_v_investment.json"
 }
 
