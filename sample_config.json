@@ -1,0 +1,17 @@
+{
+  "inputs": {
+    "X": "Value of X",
+    "Y": "Value of Y"
+  },
+  "constants": {
+    "C1": 10
+  },
+  "intermediates": {
+    "A": "X + Y + C1",
+    "B": "A / 2"
+  },
+  "outputs": {
+    "B": "Average"
+  }
+}
+

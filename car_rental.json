@@ -1,0 +1,46 @@
+{
+  "inputs": {
+    "d_km": "Distance (in KM)",
+    "t_days": "Number of Days",
+    "t_hrs": "Number of Hours",
+    "t_mins": "Number of Mins",
+    "rental_daily": "Daily cost of Rental"
+  },
+  "constants": {
+    "evo_per_min": 0.49,
+    "evo_per_hr": 17.99,
+    "evo_per_day": 104.99,
+    "modo_per_hr_small": 5,
+    "modo_per_hr_large": 7,
+    "modo_per_hr_oversized": 10,
+    "modo_per_day_small": 100,
+    "modo_per_day_large": 135,
+    "modo_per_km": 0.35,
+    "modo_km_day_lim": 500
+  },
+  "intermediates": {
+    "evo_mins": "t_mins * evo_per_min < evo_per_hr ? t_mins : 0",
+    "evo_hrs_temp": "t_mins * evo_per_min < evo_per_hr ? t_hrs : t_hrs + 1",
+    "evo_hrs": "evo_hrs_temp * evo_per_hr < evo_per_day ? evo_hrs_temp : 0",
+    "evo_days": "evo_hrs_temp * evo_per_hr < evo_per_day ? t_days : t_days + 1",
+    "evo": "Math.round(1.12 * (1.25 + evo_mins * evo_per_min + evo_hrs * evo_per_hr + evo_days * evo_per_day))",
+    "modo_hrs": "t_mins > 0 ? t_hrs + 1 : t_hrs",
+    "modo_cost_1_small": "(t_days * 12 + modo_hrs) * modo_per_hr_small + (d_km * modo_per_km)",
+    "modo_cost_2_small": "t_days * modo_per_day_small + modo_hrs * modo_per_hr_small + (Math.max(0, d_km - t_days * 500) * modo_per_km)",
+    "modo_small": "Math.round(1.12 * (3 + 1.5 + Math.min(modo_cost_1_small, modo_cost_2_small)))",
+    "modo_cost_1_large": "(t_days * 12 + modo_hrs) * modo_per_hr_large + (d_km * modo_per_km)",
+    "modo_cost_2_large": "t_days * modo_per_day_large + modo_hrs * modo_per_hr_large + (Math.max(0, d_km - t_days * 500) * modo_per_km)",
+    "modo_large": "Math.round(1.12 * (3 + 1.5 + Math.min(modo_cost_1_large, modo_cost_2_large)))",
+    "modo_oversized": "Math.round(1.12 * (3 + 1.5 + (t_days * 12 + modo_hrs) * modo_per_hr_oversized + (d_km * modo_per_km)))",
+    "rental_days": "t_hrs > 0 || t_mins > 0 ? t_days + 1 : t_days",
+    "rental": "Math.round(rental_days * rental_daily + (d_km / 7))"
+  },
+  "outputs": {
+    "evo": "Evo",
+    "modo_small": "Modo (Regular)",
+    "modo_large": "Modo (Large)",
+    "modo_oversized": "Modo (Oversized)",
+    "rental": "Rental"
+  }
+}
+

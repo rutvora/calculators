@@ -1,9 +1,0 @@
-{
-  "inputs": ["P", "Q"],
-  "intermediates": {
-    "Sum": "P + Q",
-    "Product": "P * Q"
-  },
-  "outputs": ["Sum", "Product"]
-}
-
