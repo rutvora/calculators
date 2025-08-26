@@ -1,5 +1,5 @@
-[
-  "config1.json",
-  "config2.json"
-]
+{
+  "Example": "sample_config.json",
+  "Rent-a-car Comparison": "car_rental.json"
+}
 
