@@ -1,5 +1,8 @@
 // Manifest file that lists all available JSON configs
 const manifestPath = "configs.json";
+const list = document.getElementById("configContainer");
+const app = document.getElementById("app");
+const initialListDisplay = getComputedStyle(list).display;
 
 async function loadManifest() {
   const response = await fetch(manifestPath);
@@ -10,7 +13,10 @@ async function loadManifest() {
   for (const [key, value] of Object.entries(configs)) {
     const li = document.createElement("li");
     li.textContent = key;
-    li.addEventListener("click", () => loadConfig(value));
+    li.addEventListener("click", () => {
+        loadConfig(value);
+        hideList();
+    });
     listEl.appendChild(li);
   }
 }
@@ -78,5 +84,28 @@ async function loadConfig(fileName) {
   update();
 }
 
+function hideList() {
+
+  list.style.display = "none";
+  app.style.display = "block";
+  history.pushState({ showList: false }, "");
+}
+
+// Hide the calculator part of the site
+document.getElementById("app").style.display = "none";
+
 loadManifest();
 
+// Initially, mark the list visible (and the calculator invisible)
+history.replaceState({ showList: true }, "");
+
+// handle back/forward
+window.addEventListener("popstate", (event) => {
+  if (event.state && event.state.showList) {
+    list.style.display = initialListDisplay;
+    app.style.display = "none";
+  } else {
+    list.style.display = "none";
+    app.style.display = "block";
+  }
+});
