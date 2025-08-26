@@ -1,0 +1,45 @@
+{
+  "inputs": {
+    "tot": "Total Price of the House",
+    "down": "Down Payment",
+    "rate": "Interest Rate",
+    "duration": "Duration (in years)"
+  },
+  "constants": {
+    "premium_5_down": 0.04,
+    "premium_10_down": 0.031,
+    "premium_15_down": 0.028,
+    "premium_20_down": 0.024,
+    "premium_25_down": 0.017,
+    "premium_35_down": 0.006,
+    "ptt_200k": 0.01,
+    "ptt_2m": 0.02,
+    "ptt_3m": 0.03,
+    "ptt_3m_plus": 0.05,
+    "gst": 0.05
+  },
+  "intermediates": {
+    "loan_amt": "tot - down",
+    "loan_ratio": "loan_amt / tot",
+    "mortgage_insurance": "loan_ratio > 0.90 ? premium_5_down * loan_amt : loan_ratio > 0.85 ? premium_10_down * loan_amt : loan_ratio > 0.80 ? premium_15_down * loan_amt : loan_ratio > 0.75 ? premium_20_down * loan_amt : loan_ratio > 0.65 ? premium_25_down * loan_amt : premium_35_down * loan_amt",
+    "loan_amt_post_insurance": "loan_amt + mortgage_insurance",
+    "emi_monthly_rate": "(rate / 100) / 12",
+    "emi_numerator": "loan_amt_post_insurance * emi_monthly_rate * Math.pow(1 + emi_monthly_rate, duration * 12)",
+    "emi_denominator": "Math.max(Math.pow(1 + emi_monthly_rate, duration * 12) - 1, 0.009)",
+    "emi": "Math.round(emi_numerator / emi_denominator * 100) / 100",
+    "gst_amt": "tot * gst",
+    "ptt_200k_amt": "ptt_200k * (tot < 200000 ? tot : 200000)",
+    "ptt_2m_amt": "ptt_200k_amt + ptt_2m * (tot < 2000000 ? Math.max(tot - 200000, 0) : 1800000)",
+    "ptt_3m_amt": "ptt_2m_amt + ptt_3m * (tot < 3000000 ? Math.max(tot - 2000000, 0) : 1000000)",
+    "ptt_amt": "ptt_3m_amt + ptt_3m_plus * Math.max(tot - 3000000, 0)",
+    "gst_ptt": "gst_amt + ptt_amt",
+    "price_with_tax": "tot + gst_ptt"
+  },
+  "outputs": {
+    "price_with_tax": "Price with GST and PTT",
+    "gst_ptt": "GST + PTT (Paid on top of Down and EMI)",
+    "mortgage_insurance": "Mortgage Insurance",
+    "emi": "EMI with mortgage insurance (Monthly)"
+  }
+}
+
