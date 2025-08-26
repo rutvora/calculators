@@ -1,0 +1,30 @@
+{
+  "inputs": {
+    "amt": "Amount",
+    "duration": "Duration (in years)",
+    "emi_rate": "% Rate of Interest (EMI)",
+    "investment_roi": "% Expected Rate of Return (Investment)"
+  },
+  "constants": {
+  },
+  "intermediates": {
+    "emi_monthly_rate": "(emi_rate / 100) / 12",
+    "emi_numerator": "amt * emi_monthly_rate * Math.pow(1 + emi_monthly_rate, duration * 12)",
+    "emi_denominator": "Math.max(Math.pow(1 + emi_monthly_rate, duration * 12) - 1, 0.001)",
+    "emi": "Math.round(emi_numerator / emi_denominator * 100) / 100",
+    "emi_payment": "Math.round(emi * duration * 12 * 100)/100",
+    "investment": "Math.round(Math.pow(1 + investment_roi / 100, duration) * amt * 100) / 100",
+    "diff": "Math.round((investment - emi_payment) * 100) / 100",
+    "break_even_step_1": "emi_payment / Math.max(amt, 1)",
+    "break_even_step_2": "Math.log(Math.max(break_even_step_1, 1)) / Math.max(duration, 1)",
+    "break_even_investment_roi": "Math.round((Math.exp(break_even_step_2) - 1) * 100 * 100) / 100"
+  },
+  "outputs": {
+    "emi": "Monthly EMI",
+    "emi_payment": "Total EMI payment",
+    "investment": "Returns from Investment",
+    "diff": "Benefit/Loss from investing",
+    "break_even_investment_roi": "% ROI to break even with investment"
+  }
+}
+
