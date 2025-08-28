@@ -3,7 +3,8 @@
     "tot": "Total Price of the House",
     "down": "Down Payment",
     "rate": "Interest Rate",
-    "duration": "Duration (in years)"
+    "duration": "Duration (in years)",
+    "hoa": "HOA/Strata Fees (Optional)"
   },
   "constants": {
     "premium_5_down": 0.04,
@@ -33,13 +34,17 @@
     "ptt_3m_amt": "ptt_2m_amt + ptt_3m * (tot < 3000000 ? Math.max(tot - 2000000, 0) : 1000000)",
     "ptt_amt": "ptt_3m_amt + ptt_3m_plus * Math.max(tot - 3000000, 0)",
     "gst_ptt": "gst_amt + ptt_amt",
-    "price_with_tax": "tot + gst_ptt"
+    "price_with_tax": "tot + gst_ptt",
+    "total_monthly_cost": "emi + hoa",
+    "total_one_time_cost": "down + gst_ptt"
   },
   "outputs": {
     "price_with_tax": "Price with GST and PTT",
     "gst_ptt": "GST + PTT (Paid on top of Down and EMI)",
     "mortgage_insurance": "Mortgage Insurance",
-    "emi": "EMI with mortgage insurance (Monthly)"
+    "emi": "EMI with mortgage insurance (Monthly)",
+    "total_monthly_cost": "Total monthly cost",
+    "total_one_time_cost": "Total one-time cost"
   }
 }
 
