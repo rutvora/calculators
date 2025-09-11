@@ -38,7 +38,8 @@
     "price_with_tax": "tot + gst_ptt",
     "property_tax": "property_tax_rate * tot",
     "total_monthly_cost": "emi + hoa + (property_tax / 12)",
-    "total_one_time_cost": "down + gst_ptt"
+    "total_one_time_cost": "down + gst_ptt",
+    "total_loan_cost": "emi * 12 * duration"
   },
   "outputs": {
     "price_with_tax": "Price with GST and PTT",
@@ -47,7 +48,8 @@
     "emi": "EMI with mortgage insurance (Monthly)",
     "property_tax": "Property Tax per year (based on total price)",
     "total_monthly_cost": "Total monthly cost (incl. hoa and property tax)",
-    "total_one_time_cost": "Total one-time cost"
+    "total_one_time_cost": "Total one-time cost",
+    "total_loan_cost": "Total cost of the loan"
   }
 }
 
