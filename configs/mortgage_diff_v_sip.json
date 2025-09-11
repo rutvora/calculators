@@ -14,7 +14,7 @@
     "sip_monthly_rate": "Math.pow(1 + (sip_rate / 100), 1/12) - 1",
     "sip_longer": "emi_diff * ((Math.pow(1+sip_monthly_rate, longer_months) - 1) / sip_monthly_rate) * (1 + sip_monthly_rate)",
     "sip_shorter": "emi_high * ((Math.pow(1+sip_monthly_rate, shorter_months) - 1) / sip_monthly_rate) * (1 + sip_monthly_rate)",
-    "net_diff": "(sip_longer - (emi_low * emi_low_duration * 12)) - (sip_shorter - (emi_high * emi_high_duration * 12))",
+    "net_diff": "(sip_longer - (emi_low * emi_low_duration * 12)) - (sip_shorter - (emi_high * emi_high_duration * 12))"
   },
   "outputs": {
     "sip_longer": "SIP Longer",
