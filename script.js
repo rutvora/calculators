@@ -25,7 +25,7 @@ async function loadConfig(fileName) {
   const app = document.getElementById("app");
   app.innerHTML = "Loading " + fileName + "...";
 
-  const response = await fetch(fileName);
+  const response = await fetch("configs/"+fileName);
   const config = await response.json();
 
   app.innerHTML = "";
