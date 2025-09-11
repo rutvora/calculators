@@ -42,12 +42,27 @@ async function loadConfig(fileName) {
   for (const [key, displayName] of Object.entries(config.inputs)) {
     const div = document.createElement("div");
     div.className = "field";
-    div.innerHTML = `<label>${displayName}:</label><input type="number" id="input_${key}" />`;
+    div.innerHTML = `<label>${displayName}:</label><input type="text" id="input_${key}" />`;
     app.appendChild(div);
     state[key] = 0;
 
     div.querySelector("input").addEventListener("input", e => {
-      state[key] = parseFloat(e.target.value) || 0;
+      const el = e.target;
+
+      // Remove commas
+      let raw = el.value.replace(/,/g, '');
+
+      // Keep only digits
+      if (/^\d*$/.test(raw)) {
+        el.value = raw !== '' ? Number(raw).toLocaleString() : '';
+      } else {
+        // Revert to last valid value
+        el.value = el.dataset.lastValid || '';
+      }
+
+      // Save current valid value
+      el.dataset.lastValid = el.value;
+      state[key] = parseFloat(el.value.replace(/,/g, '')) || 0;
       update();
     });
   }
