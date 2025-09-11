@@ -46,7 +46,7 @@
     "mortgage_insurance": "Mortgage Insurance",
     "emi": "EMI with mortgage insurance (Monthly)",
     "property_tax": "Property Tax per year (based on total price)",
-    "total_monthly_cost": "Total monthly cost (incl. property tax)",
+    "total_monthly_cost": "Total monthly cost (incl. hoa and property tax)",
     "total_one_time_cost": "Total one-time cost"
   }
 }
