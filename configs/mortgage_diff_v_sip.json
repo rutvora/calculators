@@ -1,0 +1,26 @@
+{
+  "inputs": {
+    "emi_high": "Costlier EMI",
+    "emi_high_duration": "Costlier EMI Duration (years)",
+    "emi_low": "Cheaper EMI",
+    "emi_low_duration": "Cheaper EMI Duration (years)",
+    "sip_rate": "Expected rate of return for SIP"
+  },
+  "intermediates": {
+    "emi_diff": "emi_high - emi_low",
+    "emi_duration_diff": "emi_low_duration - emi_high_duration",
+    "longer_months": "emi_low_duration * 12",
+    "shorter_months": "emi_duration_diff * 12",
+    "sip_monthly_rate": "Math.pow(1 + (sip_rate / 100), 1/12) - 1",
+    "sip_longer": "emi_diff * ((Math.pow(1+sip_monthly_rate, longer_months) - 1) / sip_monthly_rate) * (1 + sip_monthly_rate)",
+    "sip_shorter": "emi_high * ((Math.pow(1+sip_monthly_rate, shorter_months) - 1) / sip_monthly_rate) * (1 + sip_monthly_rate)",
+    "net_diff": "(sip_longer - (emi_low * emi_low_duration * 12)) - (sip_shorter - (emi_high * emi_high_duration * 12))",
+    "net_diff_round": "Math.round(net_diff * 100) / 100"
+  },
+  "outputs": {
+    "sip_longer": "SIP Longer",
+    "sip_shorter": "SIP Shorter",
+    "net_diff_round": "Benefit/Loss of Cheaper EMI + Longer SIP"
+  }
+}
+

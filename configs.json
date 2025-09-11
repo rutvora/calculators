@@ -1,6 +1,7 @@
 {
   "Rent-a-car": "car_rental.json",
   "EMI vs Investment": "emi_v_investment.json",
-  "Mortgage": "mortgage.json"
+  "Mortgage": "mortgage.json",
+  "Long/Short Loan v SIP": "mortgage_diff_v_sip.json"
 }
 
