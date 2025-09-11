@@ -17,7 +17,8 @@
     "ptt_2m": 0.02,
     "ptt_3m": 0.03,
     "ptt_3m_plus": 0.05,
-    "gst": 0.05
+    "gst": 0.05,
+    "property_tax_rate": 0.003
   },
   "intermediates": {
     "loan_amt": "tot - down",
@@ -35,7 +36,8 @@
     "ptt_amt": "ptt_3m_amt + ptt_3m_plus * Math.max(tot - 3000000, 0)",
     "gst_ptt": "gst_amt + ptt_amt",
     "price_with_tax": "tot + gst_ptt",
-    "total_monthly_cost": "emi + hoa",
+    "property_tax": "property_tax_rate * tot",
+    "total_monthly_cost": "emi + hoa + (property_tax / 12)",
     "total_one_time_cost": "down + gst_ptt"
   },
   "outputs": {
@@ -43,7 +45,8 @@
     "gst_ptt": "GST + PTT (Paid on top of Down and EMI)",
     "mortgage_insurance": "Mortgage Insurance",
     "emi": "EMI with mortgage insurance (Monthly)",
-    "total_monthly_cost": "Total monthly cost",
+    "property_tax": "Property Tax per year (based on total price)",
+    "total_monthly_cost": "Total monthly cost (incl. property tax)",
     "total_one_time_cost": "Total one-time cost"
   }
 }
