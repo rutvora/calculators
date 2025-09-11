@@ -51,10 +51,11 @@ async function loadConfig(fileName) {
 
       // Remove commas
       let raw = el.value.replace(/,/g, '');
-
-      // Keep only digits
-      if (/^\d*$/.test(raw)) {
-        el.value = raw !== '' ? Number(raw).toLocaleString() : '';
+      if (/^\d*(\.\d*)?$/.test(raw)) {
+        let [intPart, decPart] = raw.split('.');
+        let formattedInt = intPart ? Number(intPart).toLocaleString() : '';
+        el.value = decPart !== undefined ? formattedInt + '.' + decPart : formattedInt;
+        // el.value = raw !== '' ? Number(raw).toLocaleString() : '';
       } else {
         // Revert to last valid value
         el.value = el.dataset.lastValid || '';
@@ -91,7 +92,7 @@ async function loadConfig(fileName) {
       const val = values[key];
       const div = document.createElement("div");
       div.className = "field";
-      div.innerHTML = `<label>${displayName}:</label><span>${isNaN(val) ? "" : val}</span>`;
+      div.innerHTML = `<label>${displayName}:</label><span>${isNaN(val) ? "0" : Math.round(val * 100) / 100}</span>`;
       outputDiv.appendChild(div);
     }
   }

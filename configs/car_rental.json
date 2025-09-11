@@ -23,17 +23,17 @@
     "evo_hrs_temp": "t_mins * evo_per_min < evo_per_hr ? t_hrs : t_hrs + 1",
     "evo_hrs": "evo_hrs_temp * evo_per_hr < evo_per_day ? evo_hrs_temp : 0",
     "evo_days": "evo_hrs_temp * evo_per_hr < evo_per_day ? t_days : t_days + 1",
-    "evo": "Math.round(1.12 * (1.25 + evo_mins * evo_per_min + evo_hrs * evo_per_hr + evo_days * evo_per_day))",
+    "evo": "1.12 * (1.25 + evo_mins * evo_per_min + evo_hrs * evo_per_hr + evo_days * evo_per_day)",
     "modo_hrs": "t_mins > 0 ? t_hrs + 1 : t_hrs",
     "modo_cost_1_small": "(t_days * 12 + modo_hrs) * modo_per_hr_small + (d_km * modo_per_km)",
     "modo_cost_2_small": "t_days * modo_per_day_small + modo_hrs * modo_per_hr_small + (Math.max(0, d_km - t_days * 500) * modo_per_km)",
-    "modo_small": "Math.round(1.12 * (3 + 1.5 + Math.min(modo_cost_1_small, modo_cost_2_small)))",
+    "modo_small": "1.12 * (3 + 1.5 + Math.min(modo_cost_1_small, modo_cost_2_small))",
     "modo_cost_1_large": "(t_days * 12 + modo_hrs) * modo_per_hr_large + (d_km * modo_per_km)",
     "modo_cost_2_large": "t_days * modo_per_day_large + modo_hrs * modo_per_hr_large + (Math.max(0, d_km - t_days * 500) * modo_per_km)",
-    "modo_large": "Math.round(1.12 * (3 + 1.5 + Math.min(modo_cost_1_large, modo_cost_2_large)))",
-    "modo_oversized": "Math.round(1.12 * (3 + 1.5 + (t_days * 12 + modo_hrs) * modo_per_hr_oversized + (d_km * modo_per_km)))",
+    "modo_large": "1.12 * (3 + 1.5 + Math.min(modo_cost_1_large, modo_cost_2_large))",
+    "modo_oversized": "1.12 * (3 + 1.5 + (t_days * 12 + modo_hrs) * modo_per_hr_oversized + (d_km * modo_per_km))",
     "rental_days": "t_hrs > 0 || t_mins > 0 ? t_days + 1 : t_days",
-    "rental": "Math.round(rental_days * rental_daily + (d_km / 7))"
+    "rental": "rental_days * rental_daily + (d_km / 7)"
   },
   "outputs": {
     "evo": "Evo",

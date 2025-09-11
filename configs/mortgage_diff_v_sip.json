@@ -15,12 +15,11 @@
     "sip_longer": "emi_diff * ((Math.pow(1+sip_monthly_rate, longer_months) - 1) / sip_monthly_rate) * (1 + sip_monthly_rate)",
     "sip_shorter": "emi_high * ((Math.pow(1+sip_monthly_rate, shorter_months) - 1) / sip_monthly_rate) * (1 + sip_monthly_rate)",
     "net_diff": "(sip_longer - (emi_low * emi_low_duration * 12)) - (sip_shorter - (emi_high * emi_high_duration * 12))",
-    "net_diff_round": "Math.round(net_diff * 100) / 100"
   },
   "outputs": {
     "sip_longer": "SIP Longer",
     "sip_shorter": "SIP Shorter",
-    "net_diff_round": "Benefit/Loss of Cheaper EMI + Longer SIP"
+    "net_diff": "Benefit/Loss of Cheaper EMI + Longer SIP"
   }
 }
 

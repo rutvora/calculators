@@ -28,7 +28,7 @@
     "emi_monthly_rate": "(rate / 100) / 12",
     "emi_numerator": "loan_amt_post_insurance * emi_monthly_rate * Math.pow(1 + emi_monthly_rate, duration * 12)",
     "emi_denominator": "Math.max(Math.pow(1 + emi_monthly_rate, duration * 12) - 1, 0.009)",
-    "emi": "Math.round(emi_numerator / emi_denominator * 100) / 100",
+    "emi": "emi_numerator / emi_denominator",
     "gst_amt": "tot * gst",
     "ptt_200k_amt": "ptt_200k * (tot < 200000 ? tot : 200000)",
     "ptt_2m_amt": "ptt_200k_amt + ptt_2m * (tot < 2000000 ? Math.max(tot - 200000, 0) : 1800000)",
