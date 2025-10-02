@@ -4,7 +4,9 @@
     "down": "Down Payment",
     "rate": "Interest Rate",
     "duration": "Duration (in years)",
-    "hoa": "HOA/Strata Fees (Optional)"
+    "hoa": "HOA/Strata Fees (Optional)",
+    "rent": "Rent",
+    "rent_increase_percentage": "Rent increase % (yearly)"
   },
   "constants": {
     "premium_5_down": 0.04,
@@ -40,7 +42,10 @@
     "total_monthly_cost": "emi + hoa + (property_tax / 12)",
     "total_one_time_cost": "down + gst_ptt",
     "total_loan_cost": "emi * 12 * duration",
-    "break_even_appreciation": "(Math.pow((total_loan_cost + total_one_time_cost)/tot, 1/duration) - 1) * 100"
+    "break_even_appreciation": "(Math.pow((total_loan_cost + total_one_time_cost)/tot, 1/duration) - 1) * 100",
+    "rent_increase_factor": "1 + (rent_increase_percentage / 100)",
+    "rent_multiply_factor": "rent_increase_factor === 1 ? duration : (1 - Math.pow(rent_increase_factor, duration)) / (1 - rent_increase_factor)",
+    "total_rent_paid": "rent_multiply_factor * rent * 12"
   },
   "outputs": {
     "price_with_tax": "Price with GST and PTT",
@@ -51,7 +56,8 @@
     "total_monthly_cost": "Total monthly cost (incl. hoa and property tax)",
     "total_one_time_cost": "Total one-time cost",
     "total_loan_cost": "Total cost of the loan",
-    "break_even_appreciation": "Yearly property appreciation (approx %) to break even"
+    "break_even_appreciation": "Yearly property appreciation (approx %) to break even",
+    "total_rent_paid": "Total rent paid given your duration"
   }
 }
 
