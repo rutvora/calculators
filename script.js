@@ -92,7 +92,7 @@ async function loadConfig(fileName) {
       const val = values[key];
       const div = document.createElement("div");
       div.className = "field";
-      div.innerHTML = `<label>${displayName}:</label><span>${isNaN(val) ? "0" : Math.round(val * 100) / 100}</span>`;
+      div.innerHTML = `<label>${displayName}:</label><span>${isNaN(val) ? "0" : Number(Math.round(val * 100) / 100).toLocaleString()}</span>`;
       outputDiv.appendChild(div);
     }
   }
