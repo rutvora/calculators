@@ -39,7 +39,8 @@
     "property_tax": "property_tax_rate * tot",
     "total_monthly_cost": "emi + hoa + (property_tax / 12)",
     "total_one_time_cost": "down + gst_ptt",
-    "total_loan_cost": "emi * 12 * duration"
+    "total_loan_cost": "emi * 12 * duration",
+    "break_even_appreciation": "(Math.pow((total_loan_cost + total_one_time_cost)/tot, 1/duration) - 1) * 100"
   },
   "outputs": {
     "price_with_tax": "Price with GST and PTT",
@@ -49,7 +50,8 @@
     "property_tax": "Property Tax per year (based on total price)",
     "total_monthly_cost": "Total monthly cost (incl. hoa and property tax)",
     "total_one_time_cost": "Total one-time cost",
-    "total_loan_cost": "Total cost of the loan"
+    "total_loan_cost": "Total cost of the loan",
+    "break_even_appreciation": "Yearly property appreciation (approx %) to break even"
   }
 }
 
