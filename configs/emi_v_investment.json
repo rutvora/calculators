@@ -15,9 +15,7 @@
     "emi_payment": "emi * duration * 12",
     "investment": "Math.pow(1 + investment_roi / 100, duration) * amt",
     "diff": "investment - emi_payment",
-    "break_even_step_1": "emi_payment / Math.max(amt, 1)",
-    "break_even_step_2": "Math.log(Math.max(break_even_step_1, 1)) / Math.max(duration, 1)",
-    "break_even_investment_roi": "(Math.exp(break_even_step_2) - 1) * 100"
+    "break_even_investment_roi": "(Math.pow(emi_payment / amt, 1/duration) - 1) * 100"
   },
   "outputs": {
     "emi": "Monthly EMI",
