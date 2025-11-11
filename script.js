@@ -42,7 +42,7 @@ async function loadConfig(fileName) {
   for (const [key, displayName] of Object.entries(config.inputs)) {
     const div = document.createElement("div");
     div.className = "field";
-    div.innerHTML = `<label>${displayName}:</label><input type="text" id="input_${key}" />`;
+    div.innerHTML = `<label>${displayName}:</label><input type="number" id="input_${key}" />`;
     app.appendChild(div);
     state[key] = 0;
 
