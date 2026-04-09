@@ -1,0 +1,23 @@
+{
+  "inputs": {
+    "monthly_income": "Monthly Income",
+    "monthly_expense": "Monthly Expense",
+    "average_tax_rate": "Average Tax Rate (%)",
+    "income_hike_rate": "Expected yearly salary hike (%)",
+    "savings_appreciation_rate": "Expected yearly savings appreciation (%)",
+    "duration": "Duration (in years)"
+  },
+  "constants": {
+    "C1": 10
+  },
+  "intermediates": {
+    "monthly_savings": "monthly_income * (1 - (average_tax_rate / 100)) - monthly_expense",
+    "sip_monthly_rate": "Math.pow(1 + (savings_appreciation_rate / 100), 1/12) - 1",
+    "total_savings": "monthly_savings * ((Math.pow(1+sip_monthly_rate, duration*12) - 1) / sip_monthly_rate) * (1 + sip_monthly_rate)",
+    "B": "A / 2"
+  },
+  "outputs": {
+    "B": "Average"
+  }
+}
+

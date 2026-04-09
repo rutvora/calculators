@@ -1,0 +1,25 @@
+{
+  "inputs": {
+    "investment": "Base Investment (Currency = X)",
+    "ror": "Expected Rate of Return",
+    "mer": "Management Rate/CDR Hedge Rate",
+    "currency_rate": "Base Currency Exchange Rate (1 X = <?> Foreign Currency) ",
+    "currency_spread": "Currency Conversion Spread (+- base currency rate)",
+    "currency_exch_fees": "Currency Exchange Fees (%)",
+    "years": "Years"
+  },
+  "intermediates": {
+    "ret_no_cost": "investment * Math.pow(1 + (ror/100), years)",
+    "ret_mer": "investment * Math.pow(1 + (ror/100) - (mer/100), years)",
+    "curr_exch_fees_multiplier": "1 - (currency_exch_fees / 100)",
+    "forex_investment": "investment * (currency_rate - currency_spread) * curr_exch_fees_multiplier",
+    "ret_forex": "forex_investment * Math.pow(1 + (ror/100), years)",
+    "ret_curr_exch": "ret_forex / (currency_rate + currency_spread) * curr_exch_fees_multiplier"
+  },
+  "outputs": {
+    "ret_no_cost": "Returns with no additional costs",
+    "ret_mer": "Returns with MER/CDR Hedge Rate",
+    "ret_curr_exch": "Returns with currency exchange involved"
+  }
+}
+
