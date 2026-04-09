@@ -13,11 +13,10 @@
   "intermediates": {
     "monthly_savings": "monthly_income * (1 - (average_tax_rate / 100)) - monthly_expense",
     "sip_monthly_rate": "Math.pow(1 + (savings_appreciation_rate / 100), 1/12) - 1",
-    "total_savings": "monthly_savings * ((Math.pow(1+sip_monthly_rate, duration*12) - 1) / sip_monthly_rate) * (1 + sip_monthly_rate)",
-    "B": "A / 2"
+    "total_savings": "sip_monthly_rate === 0 ? monthly_savings * duration * 12 : monthly_savings * ((Math.pow(1+sip_monthly_rate, duration*12) - 1) / sip_monthly_rate) * (1 + sip_monthly_rate)"
   },
   "outputs": {
-    "B": "Average"
+    "total_savings": "Total Savings"
   }
 }
 
