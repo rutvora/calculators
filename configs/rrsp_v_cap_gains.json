@@ -1,0 +1,26 @@
+{
+  "inputs": {
+    "investment": "Potential RRSP Deposit",
+    "years": "#Years",
+    "growth": "Average growth (%)",
+    "curr_tax": "Current Average Tax Rate (%)",
+    "fut_tax": "Future Average Tax Rate (%)"
+  },
+  "constants": {
+  "cap_gain_inclusion_rate": "0.5"
+  },
+  "intermediates": {
+    "curr_tax_no_rrsp": "curr_tax / 100 * investment",
+    "curr_investment_no_rrsp": "investment - curr_tax_no_rrsp",
+    "future_total_no_rrsp": "Math.pow(1 + growth/100, years) * curr_investment_no_rrsp",
+    "fut_tax_no_rrsp": "(fut_tax / 100) * (future_total_no_rrsp - curr_investment_no_rrsp) * cap_gain_inclusion_rate",
+    "no_rrsp": "future_total_no_rrsp - fut_tax_no_rrsp",
+    "future_total_with_rrsp": "Math.pow(1 + growth/100, years) * investment",
+    "with_rrsp": "(1 - (fut_tax / 100)) * future_total_with_rrsp"
+  },
+  "outputs": {
+    "no_rrsp": "Earnings without putting in RRSP",
+    "with_rrsp": "Earnings with putting in RRSP"
+  }
+}
+
