@@ -2,6 +2,9 @@
   "Rent-a-car": "car_rental.json",
   "EMI vs Investment": "emi_v_investment.json",
   "Mortgage": "mortgage.json",
-  "Long/Short Loan v SIP": "mortgage_diff_v_sip.json"
+  "Long/Short Loan v SIP": "mortgage_diff_v_sip.json",
+  "Savings Calculator": "savings.json",
+  "CDR vs Forex Investment Diff": "cdr_forex_compare.json",
+  "RRSP vs Capital Gains": "rrsp_v_cap_gains.json"
 }
 
