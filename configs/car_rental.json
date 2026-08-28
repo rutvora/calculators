@@ -19,7 +19,8 @@
     "modo_per_day_small": 100,
     "modo_per_day_large": 135,
     "modo_per_km": 0.35,
-    "modo_km_day_lim": 500
+    "modo_km_day_lim": 500,
+    "modo_hrs_in_day": 17
   },
   "intermediates": {
     "evo_mins": "t_mins * evo_per_min < evo_per_hr ? t_mins : 0",
@@ -29,12 +30,14 @@
     "evo": "1.12 * (1.25 + evo_mins * evo_per_min + evo_hrs * evo_per_hr + evo_days * evo_per_day)",
     "evo_w_discount": "(1 - evo_discount_percent/100) * evo",
     "modo_hrs": "t_mins > 0 ? t_hrs + 1 : t_hrs",
-    "modo_cost_1_small": "(t_days * 12 + modo_hrs) * modo_per_hr_small + (d_km * modo_per_km)",
-    "modo_cost_2_small": "t_days * modo_per_day_small + modo_hrs * modo_per_hr_small + (Math.max(0, d_km - t_days * 500) * modo_per_km)",
-    "modo_small": "1.12 * (3 + 1.5 + Math.min(modo_cost_1_small, modo_cost_2_small))",
-    "modo_cost_1_large": "(t_days * 12 + modo_hrs) * modo_per_hr_large + (d_km * modo_per_km)",
-    "modo_cost_2_large": "t_days * modo_per_day_large + modo_hrs * modo_per_hr_large + (Math.max(0, d_km - t_days * 500) * modo_per_km)",
-    "modo_large": "1.12 * (3 + 1.5 + Math.min(modo_cost_1_large, modo_cost_2_large))",
+    "modo_cost_1_small": "(t_days * modo_hrs_in_day + modo_hrs) * modo_per_hr_small + (d_km * modo_per_km)",
+    "modo_cost_2_small": "t_days * modo_per_day_small + modo_hrs * modo_per_hr_small + (Math.max(0, d_km - t_days * modo_km_day_lim) * modo_per_km)",
+    "modo_cost_3_small": "(t_days + 1) * modo_per_day_small + (Math.max(0, d_km - (t_days + 1) * modo_km_day_lim) * modo_per_km)",
+    "modo_small": "1.12 * (3 + 1.5 + Math.min(modo_cost_1_small, modo_cost_2_small, modo_cost_3_small))",
+    "modo_cost_1_large": "(t_days * modo_hrs_in_day + modo_hrs) * modo_per_hr_large + (d_km * modo_per_km)",
+    "modo_cost_2_large": "t_days * modo_per_day_large + modo_hrs * modo_per_hr_large + (Math.max(0, d_km - t_days * modo_km_day_lim) * modo_per_km)",
+    "modo_cost_3_large": "(t_days + 1) * modo_per_day_large +  (Math.max(0, d_km - (t_days + 1) * modo_km_day_lim) * modo_per_km)",
+    "modo_large": "1.12 * (3 + 1.5 + Math.min(modo_cost_1_large, modo_cost_2_large, modo_cost_3_large))",
     "modo_oversized": "1.12 * (3 + 1.5 + (t_days * 12 + modo_hrs) * modo_per_hr_oversized + (d_km * modo_per_km))",
     "rental_days": "t_hrs > 0 || t_mins > 0 ? t_days + 1 : t_days",
     "rental": "rental_days * rental_daily + (d_km * (mileage / 100) * fuel_cost)"
