@@ -2,6 +2,7 @@
   "inputs": {
     "base": "Base (Yearly, CAD)",
     "bonus": "Bonus",
+    "rrsp_match_percent": "RRSP Match % (of base)",
     "stock_units_rsu": "RSU Stock Units Per Year",
     "stock_price_curr": "Current Stock Price (USD)",
     "stock_price_fluctuation_percentage": "% Expected Stock Price Fluctuation",
@@ -15,6 +16,7 @@
   "intermediates": {
     "fluctuation": "stock_price_fluctuation_percentage / 100",
     "espp_contrib_ratio": "espp_contrib_percent / 100",
+    "rrsp_match_amt": "base * (rrsp_match_percent / 100)",
     "stock_price_min": "(stock_price_curr * (1 - fluctuation))",
     "stock_price_max": "(stock_price_curr * (1 + fluctuation))",
     "exchange_rate": "exchange_rate == 0 ? 1 : exchange_rate",
@@ -25,9 +27,9 @@
     "stocks_amt_mid": "stock_price_curr * stock_units_all * exchange_rate",
     "stocks_amt_max": "stock_price_max * stock_units_all * exchange_rate",
     "base_minus_espp_contrib": "base * (1 - espp_contrib_ratio)",
-    "total_min": "stocks_amt_min + base_minus_espp_contrib + bonus",
-    "total_mid": "stocks_amt_mid + base_minus_espp_contrib + bonus",
-    "total_max": "stocks_amt_max + base_minus_espp_contrib + bonus"
+    "total_min": "stocks_amt_min + base_minus_espp_contrib + bonus + rrsp_match_amt",
+    "total_mid": "stocks_amt_mid + base_minus_espp_contrib + bonus + rrsp_match_amt",
+    "total_max": "stocks_amt_max + base_minus_espp_contrib + bonus + rrsp_match_amt"
   },
   "outputs": {
     "stocks_amt_min": "Min Stock component (incl ESPP)",
